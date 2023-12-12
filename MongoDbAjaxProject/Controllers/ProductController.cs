@@ -14,7 +14,7 @@ namespace MongoDbAjaxProject.Controllers
             var database = client.GetDatabase(_databaseSettings.DatabaseName);
             _productCollection = database.GetCollection<Product>(_databaseSettings.ProductCollectionName);
         }
-        public IActionResult Index()
+        public async Task< IActionResult> Index()
         {
             return View();
         }

@@ -14,9 +14,10 @@ namespace MongoDbAjaxProject.Controllers
             var database = client.GetDatabase(_databaseSettings.DatabaseName);
             _categoryCollection = database.GetCollection<Category>(_databaseSettings.CategoryCollectionName);
         }
-        public IActionResult Index()
+        public async Task< IActionResult> Index()
         {
-            return View();
+            var values=_categoryCollection.Find(x=>true).ToListAsync();
+            return View(values);
         }
     }
 }
