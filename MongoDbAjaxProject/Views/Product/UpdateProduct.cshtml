@@ -1,0 +1,30 @@
+﻿@model MongoDbAjaxProject.DAL.Entities.Product
+@{
+    ViewData["Title"] = "UpdateProduct";
+    Layout = "~/Views/Shared/_MongoLayout.cshtml";
+}
+
+
+
+<link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+<div class="container-fluid">
+    <br />
+    <br />
+    <form method="post">
+        <label>Kategori ID</label>
+        <br /><br />
+        <input type="text" asp-for="ProductID" class="form-control" />
+        <br /><br />
+        <label>Ürün Adı</label>
+        <input type="text" asp-for="ProductName" class="form-control" />
+        <br /><br />
+        <label>Ürün Fiyatı</label>
+        <input type="text" asp-for="ProductPrice" class="form-control" />
+        <br /><br />
+        <label>Stok Adedi</label>
+        <input type="text" asp-for="ProductStock" class="form-control" />
+        <br /><br />
+        <button class="btn btn-success">Ürünü Güncelle</button>
+
+    </form>
+</div>

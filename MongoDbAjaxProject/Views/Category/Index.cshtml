@@ -1,6 +1,7 @@
 ﻿@model List<MongoDbAjaxProject.DAL.Entities.Category>
 @{
     Layout = "~/Views/Shared/_MongoLayout.cshtml";
+    int count = 0;
 }
 
 <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
@@ -10,6 +11,7 @@
 <div class="container">
     <table class="table table-bordered">
         <tr>
+            <th></th>
             <th>#</th>
             <th>Kategori Adı</th>
             <th>Sil</th>
@@ -17,7 +19,9 @@
         </tr>
         @foreach (var item in Model)
         {
+            count++;
             <tr>
+                <td>@count</td>
                 <td>@item.CategoryID</td>
                 <td>@item.CategoryName</td>
                 <td><a href="/Category/DeleteCategory/@item.CategoryID" class="btn btn-danger">Sil</a></td>
