@@ -39,5 +39,11 @@ namespace MongoDbAjaxProject.Controllers
             var values = await _categoryCollection.Find(x => x.CategoryID == id).FirstOrDefaultAsync();
             return View(values);
         }
+        [HttpPost]
+        public async Task<IActionResult> UpdateCategory(Category category)
+        {
+            await _categoryCollection.FindOneAndReplaceAsync(x => x.CategoryID == category.CategoryID, category);
+            return RedirectToAction("Index");
+        }
     }
 }
