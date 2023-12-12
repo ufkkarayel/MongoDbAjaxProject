@@ -1,0 +1,18 @@
+﻿@model MongoDbAjaxProject.DAL.Entities.Category
+@{
+    Layout = null;
+}
+<link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+<br />
+<br />
+<div class="container">
+<form method="post">
+        <label>Kategori Adı</label>
+        <br />
+        <br />
+        <input type="text" asp-for="CategoryName"class="form-control" required/>
+        <br />
+        <button class="btn btn-outline-primary">Kaydet</button>
+</form>
+</div>
+
