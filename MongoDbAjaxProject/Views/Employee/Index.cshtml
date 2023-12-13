@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_MongoLayout.cshtml";
 }
@@ -24,37 +23,61 @@
 <br />
 <hr />
 <div class="container" id="employeelist">
+</div>
 
+<h3>Yeni Personel Girişi</h3>
+<div>
+    <input type="text" id="txtname" class="form-control" placeholder="Personel Adı" style="border:1px solid #333" />
+    <br />
+    <input type="text" id="txtsurname" class="form-control" placeholder="Personel Soyadı" style="border:1px solid #333" />
+    <br />
+    <input type="text" id="txtsalary" class="form-control" placeholder="Personel Maaşı" style="border:1px solid #333" />
+    <br />
 </div>
 <script>
-    $("#btnemployeelist").click(function()
-    {
+    $("#btnemployeelist").click(function () {
         $.ajax({
-            contentType:"application/json",
-            dataType:"json",
-            type:"Get",
-            url:"/Employee/EmployeeList",
-            success: function(funk1){
-                let values=jQuery.parseJSON(funk1);
+            contentType: "application/json",
+            dataType: "json",
+            type: "Get",
+            url: "/Employee/EmployeeList",
+            success: function (funk1) {
+                let values = jQuery.parseJSON(funk1);
                 console.log(values);
 
-                let tablehtml=`<table class= table table-bordered>
-                                <tr>
-                                <th>Personel ID</th>
-                                <th>Personel Adı</th>
-                                <th>Personel Soyadı</th>
-                                <th>Personel Maaş</th>
+                let tablehtml = `<table class= table table-bordered>
+                                    <tr>
+                                    <th>Personel ID</th>
+                                    <th>Personel Adı</th>
+                                    <th>Personel Soyadı</th>
+                                    <th>Personel Maaş</th>
+                                    </tr>`
+                $.each(values, (index, value) => {
+                    tablehtml += `<tr>
+                                <td>${value.EmployeeID}</td>
+                                <td>${value.EmployeeName}</td>
+                                <td>${value.EmployeeSurname}</td>
+                                <td>${value.EmployeeSalary}</td>
                                 </tr>`
-                $.each(values ,(index,value)=>{
-                tablehtml+=`<tr>
-                            <td>${value.EmployeeID}</td>
-                            <td>${value.EmployeeName}</td>
-                            <td>${value.EmployeeSurname}</td>
-                            <td>${value.EmployeeSalary}</td>
-                            </tr>`
                 });
-                tablehtml+=`</table>`
+                tablehtml += `</table>`
                 $("#employeelist").html(tablehtml);
+            }
+        });
+    });
+    $("#btnemployeecreate").click(function () {
+        let employeevalues = {
+            EmployeeName: $("#txtname").val(),
+            EmployeeSurname: $("#txtsurname").val(),
+            EmployeeSalary: $("#txtsalary").val()
+        };
+        $.ajax({
+            type: "post",
+            url: "/Employee/CreateEmployee/",
+            data: employeevalues,
+            success: function (funk2) {
+                let result = jQuery.parseJSON(funk2);
+                alert("Personel Başarıyla Eklendi");
             }
         });
     });
