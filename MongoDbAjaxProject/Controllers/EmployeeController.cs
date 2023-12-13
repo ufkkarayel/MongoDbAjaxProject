@@ -20,17 +20,7 @@ namespace MongoDbAjaxProject.Controllers
         {
             return View();
         }
-        [HttpGet]
-        public IActionResult Ekle() 
-        {
-            return View();
-        }
-        [HttpPost]
-        public async Task< IActionResult> Ekle(Employee employee)
-        {
-            await _employeeCollection.InsertOneAsync(employee);
-            return RedirectToAction("Index");
-        }
+      
         public async Task< IActionResult> EmployeeList()
         {
             var values = await _employeeCollection.Find(x => true).ToListAsync();
@@ -41,5 +31,3 @@ namespace MongoDbAjaxProject.Controllers
 }
 
 
-//var values = await _categoryCollection.Find(x => true).ToListAsync();
-//return View(values);
