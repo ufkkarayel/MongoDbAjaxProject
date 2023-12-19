@@ -39,7 +39,11 @@
 <h3>Personel Getirme İşlemi</h3>
 <input type="text" placeholder="Getirmek istediğiniz personel ID" class="form-control" style="border:1px solid #333" id="txtemployeeid" />
 <div id="employeelistbyid"></div>
-
+<hr />
+<div>
+    <h3>Personel Silme ALanı</h3>
+    <input type="text" placeholder="Silmek istediğiniz personelin IDsi" class="form-control " style="border:1px solid #333"  id="txtdeleteemployeeid"/>
+</div>
 <script>
     $("#btnemployeelist").click(function () {
         $.ajax({
@@ -115,5 +119,15 @@
             }
         });
     });
-
+    $("#btnemployeedelete").click(function(){
+        let id = $("txtdeleteemployeeid").val();
+        $.ajax({
+            url:"/Employee/DeleteEmployee"+id,
+            type:"Get",
+            contentType:"application/json",
+            success:function(funk4){
+                swal("Personel başarıyla silindi.");
+            }
+        });
+    });
 </script>
