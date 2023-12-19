@@ -40,6 +40,11 @@ namespace MongoDbAjaxProject.Controllers
             var jsonValues=JsonConvert.SerializeObject(values);
             return Json(jsonValues);
         }
+        public async  Task<IActionResult> DeleteEmployee(string id)
+        {
+            await _employeeCollection.DeleteOneAsync(x => x.EmployeeID == id);
+            return NoContent();
+        }
     }
 }
 

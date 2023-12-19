@@ -120,9 +120,9 @@
         });
     });
     $("#btnemployeedelete").click(function(){
-        let id = $("txtdeleteemployeeid").val();
+        let id = $("#txtdeleteemployeeid").val();
         $.ajax({
-            url:"/Employee/DeleteEmployee"+id,
+            url:"/Employee/DeleteEmployee/" + id,
             type:"Get",
             contentType:"application/json",
             success:function(funk4){
@@ -131,3 +131,4 @@
         });
     });
 </script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
