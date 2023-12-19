@@ -44,6 +44,23 @@
     <h3>Personel Silme ALanı</h3>
     <input type="text" placeholder="Silmek istediğiniz personelin IDsi" class="form-control " style="border:1px solid #333"  id="txtdeleteemployeeid"/>
 </div>
+<hr />
+<div>
+    <h3>Personel Güncelleme Sayfası</h3>
+    <input type="text" id="txtidedit" class="form-control" placeholder="Güncellenecek Personel ID" style="border:1px solid #333" />
+    <br />
+    <input type="text" id="txtnameedit" class="form-control" placeholder="Güncellenecek Personel Adı" style="border:1px solid #333" />
+    <br />
+    <input type="text" id="txtsurnameedit" class="form-control" placeholder="Güncellenecek Personel Soyadı" style="border:1px solid #333" />
+    <br />
+    <input type="text" id="txtsalaryedit" class="form-control" placeholder="Güncellenecek Personel Maaşı" style="border:1px solid #333" />
+    <br />
+</div>
+
+
+
+
+
 <script>
     $("#btnemployeelist").click(function () {
         $.ajax({
@@ -129,6 +146,23 @@
                 swal("Personel başarıyla silindi.");
             }
         });
+    });
+    $("#btnemployeeupdate").click(function(){
+        let values={
+            EmployeeID: $("#txtidedit").val(),
+            EmployeeName: $("#txtnameedit").val(),
+            EmployeeSurname: $("#txtsurnameedit").val(),
+            EmployeeSalary: $("#txtsalaryedit").val()
+        };
+        $.ajax({
+            url:"/Employee/UpdateEmployee/",
+            type:"post",
+            data:values,
+            success: function(funk5){
+                swal("Başarıyla güncellendi");
+            }
+        });
+
     });
 </script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
